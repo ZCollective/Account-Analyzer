@@ -11,5 +11,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    data: require('./modules/data').default,
+    general: require('./modules/general').default
   }
 })
