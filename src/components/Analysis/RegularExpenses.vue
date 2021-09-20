@@ -66,6 +66,7 @@
 import PurposeExport from './PurposeExport.vue'
 import PurposeImport from './PurposeImport.vue'
 const detailsLookup = require('../general/detailLookup')
+const demoPurpose = require('../../assets/demo-data/config.json')
 export default {
   components: { PurposeExport, PurposeImport },
   props: {
@@ -91,7 +92,13 @@ export default {
       this.$store.dispatch('data/setKeysToFilter', newValue.map(entry => entry.key))
     }
   },
+  created () {
+    if (this.isDemo) this.updateMapping(demoPurpose)
+  },
   computed: {
+    isDemo () {
+      return this.$store.getters['general/getDemo']
+    },
     terminal () {
       return console
     },

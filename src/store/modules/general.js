@@ -1,12 +1,14 @@
 const state = {
   progress: null,
-  isLoading: false
+  isLoading: false,
+  isDemo: false
 }
 
 // getters
 const getters = {
   getProgress: state => state.progress,
-  getLoading: state => state.isLoading
+  getLoading: state => state.isLoading,
+  getDemo: state => state.isDemo
 }
 
 // actions
@@ -20,6 +22,9 @@ const actions = {
   },
   setLoading ({ commit }, isLoading) {
     commit('setloading', isLoading)
+  },
+  setDemo ({ commit }, isDemo) {
+    commit('setdemo', isDemo)
   }
 }
 
@@ -30,6 +35,9 @@ const mutations = {
   },
   setloading (state, isLoading) {
     state.isLoading = isLoading
+  },
+  setdemo (state, isDemo) {
+    state.isDemo = isDemo
   }
 }
 

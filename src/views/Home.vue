@@ -19,6 +19,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn text @click="loadDemo">Try a Demo!</v-btn>
           <v-btn
             text
             :disabled="selectedFile === null"
@@ -36,6 +37,8 @@
   </v-container>
 </template>
 <script>
+// eslint-disable-next-line
+import demoFile from 'raw-loader!../assets/demo-data/account.txt'
 const parser = require('@centrapay/swift-parser')
 export default {
   data () {
@@ -79,6 +82,16 @@ export default {
       this.$store.dispatch('general/setLoading', true)
       this.$store.dispatch('data/setEntries', this.parsedFile)
       this.$router.push('Analysis')
+    },
+    async loadDemo () {
+      this.$store.dispatch('general/setLoading', true)
+      this.$store.dispatch('general/setDemo', true)
+      this.$store.dispatch('data/setEntries', parser.parse({
+        type: 'mt940',
+        data: demoFile
+      }))
+      this.$router.push('Analysis')
+      console.log('Loading demo!')
     }
   }
 }
